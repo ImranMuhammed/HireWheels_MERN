@@ -1,0 +1,56 @@
+export const VEHICLE_LIST_REQUEST="VEHICLE_LIST_REQUEST";
+export const VEHICLE_LIST_SUCCESS="VEHICLE_LIST_SUCCESS";
+export const VEHICLE_LIST_FAIL="VEHICLE_LIST_ERROR";
+
+export const VEHICLE_ADD_REQUEST="VEHICLE_ADD_REQUEST";
+export const VEHICLE_ADD_SUCCESS="VEHICLE_ADD_SUCCESS";
+export const VEHICLE_ADD_FAIL="VEHICLE_ADD_FAIL";
+
+export const VEHICLE_AVAILABLE_REQUEST="VEHICLE_ADD_REQUEST";
+export const VEHICLE_AVAILABLE_SUCCESS="VEHICLE_ADD_SUCCESS";
+export const VEHICLE_AVAILABLE_FAIL="VEHICLE_ADD_FAIL";
+
+export const VEHICLE_CATEGORY={
+    SELECT_VEHICLE_CATEGORY:"SELECT_VEHICLE_CATEGORY",
+    CAR:"CAR",
+    BIKE:"BIKE"
+}
+
+export const CAR_SUB_CATEGORY=[
+    "SELECT_SUB_CATEGORY",
+    "SEDAN",
+    "HATCHBACK",
+    "SUV"
+]
+
+export const BIKE_SUB_CATEGORY=[
+    "SELECT_SUB_CATEGORY",
+    "CRUISER",
+    "DIRTBIKE",
+    "RACE"
+]
+
+export const VEHICLE_LOCATION=[
+    "SELECT_LOCATION",
+    "WORLI",
+    "CHEMBUR",
+    "POWAI"
+]
+
+export const VEHICLE_FUEL_TYPE=[
+    "SELECT_FUEL_TYPE",
+    "PETROL",
+    "DIESEL",
+]
+
+export const VEHICLE={
+    MODEL:'model',
+    NUMBER:'number',
+    CATEGORY:'category',
+    SUB_CATEGORY:'subCategory',
+    COLOR:'color',
+    PRICE:'price',
+    LOCATION:'location',
+    IMAGE:'image',
+    FUEL_TYPE:'fuelType'
+}

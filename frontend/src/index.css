@@ -1,0 +1,37 @@
+.booknow-container{
+  margin:auto;
+  margin-top: 10%;
+  margin-bottom:30%;
+  text-align: center;
+  width: fit-content;
+}
+
+.booknow-button{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+.stepper-container{
+  margin:auto;
+  margin-bottom:30%;
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+}
+ 
+.card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+} 
+
+.center-items{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
