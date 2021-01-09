@@ -39,8 +39,7 @@ const addVehicle=reqBody=>{
             "vehicleLocation":{"type":"String", "required":"true"},
             "vehicleImage":{"type":"String", "required":"true"},
             "vehiclePricePerDay":{"type":"Number", "required":"true"},
-            "vehicleFuelType":{"type":"String", "required":"true"},
-            "vehicleAvailableStatus":{"type":"Boolean", "required":"true", "default":"true"}
+            "vehicleFuelType":{"type":"String", "required":"true"}
         }
     })
 }

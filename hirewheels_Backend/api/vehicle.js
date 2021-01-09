@@ -20,6 +20,7 @@ const addVehicle=async(req,res)=>{
         let vehiclePricePerDay;
         let vehicleFuelType;
         let vehicleAvailableStatus;
+        let newVehicle;
 
         //Validate all the datas
         validate=apiValidator.addVehicle(req.body);
@@ -35,14 +36,14 @@ const addVehicle=async(req,res)=>{
         vehicleImage=req.body.vehicleImage;
         vehiclePricePerDay=req.body.vehiclePricePerDay;
         vehicleFuelType=req.body.vehicleFuelType;
-        vehicleAvailableStatus=req.body.vehicleAvailableStatus;
+        vehicleAvailableStatus=true;//req.body.vehicleAvailableStatus;
 
         //APssing the datas to the addVehicleController
-        await vehicleController.addVehicle(vehicleModel,vehicleCategory,vehicleSubCategory,vehicleNumber,vehicleColor,vehicleLocation,vehicleImage,vehiclePricePerDay,vehicleFuelType,vehicleAvailableStatus);
+      newVehicle= await vehicleController.addVehicle(vehicleModel,vehicleCategory,vehicleSubCategory,vehicleNumber,vehicleColor,vehicleLocation,vehicleImage,vehiclePricePerDay,vehicleFuelType,vehicleAvailableStatus);
 
-        response=await util.customResponse(refStrings.successVehicleAdded,200);
+        response=await util.customResponse(newVehicle,200);
 
-        res.status(response.statusCode).send(response)        
+        res.status(response.statusCode).send(response.message)        
     }
     catch(exception){
         await util.handleErrorResponse(exception,res)
@@ -57,14 +58,42 @@ const getVehicles=async(req,res)=>{
         let vehicleSubCategory;
 
         //Get the Category
-        vehicleSubCategory=req.query.category;
-        console.log("Vehicle category");
-        console.log(vehicleSubCategory);
+     //   vehicleSubCategory=req.query.category;
+       // console.log("Vehicle category");
+        //console.log(vehicleSubCategory);
 
         //Get all the vehicles
-        allVehiclesList=await vehicleController.getAllVehicles(vehicleSubCategory);
+        allVehiclesList=await vehicleController.getAllVehicles();
 
         response=await util.customResponse(allVehiclesList,200);
+
+        res.status(response.statusCode).send(response.message)
+    }
+    catch(exception){
+        await util.handleErrorResponse(exception,res)
+    }
+}
+
+const availableVehicles=async(req,res)=>{
+    try{
+        
+        let response;
+        let allVehiclesList;
+        let vehicleSubCategory;
+        let availableVehiclesList;
+        let category;
+        let pickupDate;
+        let pickupLocation;
+
+        category=req.query.category;
+        pickupLocation=req.query.location
+
+        //Get all the vehicles
+        allVehiclesList=await vehicleController.getAllVehicles();
+        
+        availableVehiclesList=allVehiclesList.filter(vehicle=>vehicle.vehicleAvailableStatus==true && vehicle.vehicleCategory===category && vehicle.vehicleLocation==pickupLocation)
+
+        response=await util.customResponse(availableVehiclesList,200);
 
         res.status(response.statusCode).send(response.message)
     }
@@ -163,4 +192,4 @@ const removeVehicle=async(req,res)=>{
     }
 }
 
-module.exports={addVehicle,getVehicles,updateVehicleDetails,getVehicleById,removeVehicle}
+module.exports={addVehicle,getVehicles,updateVehicleDetails,getVehicleById,removeVehicle,availableVehicles}

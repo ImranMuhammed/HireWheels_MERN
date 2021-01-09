@@ -30,7 +30,8 @@ const  handleErrorResponse=async(exception,res)=>{
     }
 
     //Send Response
-    res.status(statusCode).send(response);
+    console.log("Inside Handle response:",response)
+    res.status(response.statusCode).send(response.message);
 
 }
 

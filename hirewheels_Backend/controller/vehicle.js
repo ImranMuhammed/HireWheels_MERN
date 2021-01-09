@@ -2,7 +2,7 @@ const VehicleModel=require('../models/vehicle');
 const userException = require('../tools/userException');
 const { userErrors } = require('../constants/errors');
 const { response } = require('express');
-const category=require('../constants/category')
+const category=require('../constants/category');
 
 const addVehicle=async(vehicleModel,vehicleCategory,vehicleSubCategory,vehicleNumber,vehicleColor,vehicleLocation,vehicleImage,vehiclePricePerDay,vehicleFuelType,vehicleAvailableStatus)=>{
     
@@ -33,7 +33,7 @@ const addVehicle=async(vehicleModel,vehicleCategory,vehicleSubCategory,vehicleNu
         //Add new Vehicle 
         newVehicle=await VehicleModel.create([vehicleDoc]);
 
-        return true;
+        return newVehicle;
     }
     catch(error){
         throw error;
@@ -41,13 +41,13 @@ const addVehicle=async(vehicleModel,vehicleCategory,vehicleSubCategory,vehicleNu
     
 }
 
-const getAllVehicles=async(vehicleSubCategory)=>{
+const getAllVehicles=async()=>{
     try{
 
         let availableVehicles;
 
         //Get all the available vehicles
-        switch(vehicleSubCategory.toUpperCase()){
+      /*   switch(vehicleSubCategory.toUpperCase()){
             case category.carSubCategory.SUV :  availableVehicles=await VehicleModel.find({vehicleSubCategory:category.carSubCategory.SUV});
                                                 break;
             case category.carSubCategory.SEDAN: availableVehicles=await VehicleModel.find({vehicleSubCategory:category.carSubCategory.SEDAN});
@@ -56,8 +56,9 @@ const getAllVehicles=async(vehicleSubCategory)=>{
                                                 break;
                                         default   : availableVehicles=await VehicleModel.find({});
                                                 break;
-        }
+        } */
         
+        availableVehicles=await VehicleModel.find({})
 
         if(availableVehicles==null || availableVehicles.length==0) throw new userException(userErrors.vehiclesNotAvailable);
 

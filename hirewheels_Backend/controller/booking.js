@@ -33,7 +33,7 @@ const bookVehicle=async(vehicleId,pickupDate,pickupLocation,dropOffDate,bookingD
 
             user.walletMoney=user.walletMoney-bookingAmount;
 
-            user.save();
+           await user.save();
 
             //Create bookingDocument to update DB
             vehicleNumber=vehicle.vehicleNumber;
